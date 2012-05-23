@@ -1,0 +1,1 @@
+A JSON query-pattern to LINQ-expression converter, and the subsequent usage of NHibernate to generate SQL.

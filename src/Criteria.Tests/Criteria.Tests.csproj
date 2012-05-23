@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{173A8A13-8BA2-4E71-BABF-CC8ECC436A9B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Criteria.Tests</RootNamespace>
+    <AssemblyName>Criteria.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\lib\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Newtonsoft.Json.4.5.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\lib\StructureMap\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.AutoMocking">
+      <HintPath>..\..\lib\StructureMap\StructureMap.AutoMocking.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CriteriaLeafExpressionStrategyTests.cs" />
+    <Compile Include="DefaultSqlGeneratorTests.cs" />
+    <Compile Include="ExpressionBuilderTests.cs" />
+    <Compile Include="JoinPathSolverTests.cs" />
+    <Compile Include="JoinPathTests.cs" />
+    <Compile Include="JoinTests.cs" />
+    <Compile Include="JsonCriteriaNodeTests.cs" />
+    <Compile Include="LinqToObjectsComposite.cs" />
+    <Compile Include="LinqToObjectsModel\LinqToObjectsFour.cs" />
+    <Compile Include="LinqToObjectsModel\LinqToObjectsRepeat.cs" />
+    <Compile Include="LinqToObjectsModel\LinqToObjectsThree.cs" />
+    <Compile Include="LinqToObjectsModel\LinqToObjectsOne.cs" />
+    <Compile Include="LinqToObjectsModel\LinqToObjectsTwo.cs" />
+    <Compile Include="Mocks\JoinPathRegistryWithNoQueryableProvider.cs" />
+    <Compile Include="Mocks\LinqToObjectsQueryableProvider.cs" />
+    <Compile Include="Mocks\MockCriteriaTypeRegistry.cs" />
+    <Compile Include="Mocks\MockJoinPathRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionHelper.cs" />
+    <Compile Include="SqlConfiguratorTests.cs" />
+    <Compile Include="SqlGeneratorResultTests.cs" />
+    <Compile Include="SqlUnparameterizationStrategyTests.cs" />
+    <Compile Include="StructureMapBootstrapper.cs" />
+    <Compile Include="TestModel\TestEntityClass.cs" />
+    <Compile Include="TestModel\TestEntityTwo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Criteria\Criteria.csproj">
+      <Project>{D03C075A-058F-439D-9123-B78A0E7C17F1}</Project>
+      <Name>Criteria</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

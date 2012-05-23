@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D03C075A-058F-439D-9123-B78A0E7C17F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Criteria</RootNamespace>
+    <AssemblyName>Criteria</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\lib\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Newtonsoft.Json.4.5.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converter.cs" />
+    <Compile Include="CriteriaRegistrationException.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionEqualsColumnStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsNotSpecifiedStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsSpecifiedStrategy.cs" />
+    <Compile Include="CriteriaRegistry.cs" />
+    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="Expressions\ExpressionBuilder.cs" />
+    <Compile Include="Expressions\FindParameterTypesVisitor.cs" />
+    <Compile Include="Expressions\ICriteriaLeafExpressionStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsFalseStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsNotInStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionDoesNotStartWithStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionDoesNotEndWithStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionBetweenStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionDoesNotContainStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionEndsWithStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsInStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsTrueStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionStartsWithStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionContainsStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionLessThanStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionGreaterThanStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionGreaterThanOrEqualToStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionLessThanOrEqualToStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionEqualsStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionNotEqualsStrategy.cs" />
+    <Compile Include="Expressions\Impl\CriteriaLeafExpressionStrategy.cs" />
+    <Compile Include="IQueryableProvider.cs" />
+    <Compile Include="JoinPathRegistrationException.cs" />
+    <Compile Include="Joins\AbstractJoinPart.cs" />
+    <Compile Include="Joins\AnonymousClassManager.cs" />
+    <Compile Include="Joins\ConstrainedJoinPart.cs" />
+    <Compile Include="Joins\InjectJoinedTypePropertyVisitor.cs" />
+    <Compile Include="Joins\Join.cs" />
+    <Compile Include="Joins\JoinConfiguration.cs" />
+    <Compile Include="Joins\JoinContext.cs" />
+    <Compile Include="Joins\JoinOnPart.cs" />
+    <Compile Include="Joins\JoinPart.cs" />
+    <Compile Include="Joins\JoinPathSolver.cs" />
+    <Compile Include="Joins\JoinToPart.cs" />
+    <Compile Include="Json\JsonCriteriaNode.cs" />
+    <Compile Include="Json\ICompositeCriteria.cs" />
+    <Compile Include="Json\ICriteriaLeaf.cs" />
+    <Compile Include="Json\Operator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registries\ICriteriaTypeRegistry.cs" />
+    <Compile Include="Registries\IJoinPathRegistry.cs" />
+    <Compile Include="Registries\Impl\BaseCriteriaTypeRegistry.cs" />
+    <Compile Include="Registries\Impl\BaseJoinPathRegistry.cs" />
+    <Compile Include="Registries\JoinPath.cs" />
+    <Compile Include="Registries\JoinPathConfigurator.cs" />
+    <Compile Include="Registries\JoinPathRegistryConfigurator.cs" />
+    <Compile Include="Registries\JoinPathRegistryToConfigurator.cs" />
+    <Compile Include="Registries\JoinPathToConfigurator.cs" />
+    <Compile Include="Registries\TypeRegistryResult.cs" />
+    <Compile Include="Sql\IMappingAssemblyContainer.cs" />
+    <Compile Include="Sql\Impl\BaseMappingAssemblyContainer.cs" />
+    <Compile Include="Sql\Impl\EscapedStringUnparameterizationStrategy.cs" />
+    <Compile Include="Sql\Impl\NonQuotedUnparameterizationStrategy.cs" />
+    <Compile Include="Sql\Impl\QuotedUnparameterizationStrategy.cs" />
+    <Compile Include="Sql\Impl\SqlGenerator.cs" />
+    <Compile Include="Sql\ISqlGenerator.cs" />
+    <Compile Include="Sql\ISqlUnparameterizationStrategy.cs" />
+    <Compile Include="Sql\Parameter.cs" />
+    <Compile Include="Sql\SqlGeneratorConfiguration.cs" />
+    <Compile Include="Sql\SqlGeneratorConfigurator.cs" />
+    <Compile Include="Sql\SqlGeneratorResult.cs" />
+    <Compile Include="TypeRegistrationException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
