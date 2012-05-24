@@ -216,8 +216,7 @@ namespace Criteria.Joins
 
 				body = Expression.Call(typeof(Queryable), "Distinct", new[] { distinctProjectionExpressionResultType }, body);
 
-				// TODO: fix this so that it works and so that matt wont have to burn in hell for his transgression below
-				//body = Expression.Call(typeof(Queryable), "Count", new[] { distinctProjectionExpressionResultType }, body);
+				body = Expression.Call(typeof(Queryable), "Count", new[] { distinctProjectionExpressionResultType }, body);
 			}
 
 			SqlGeneratorResult result;
@@ -233,12 +232,6 @@ namespace Criteria.Joins
 			else
 			{
 				result = sqlGenerator.Generate(body);
-			}
-
-			// TODO: matt will burn in hell for this
-			if(configuration.DistinctCountPropertyExpression != null)
-			{
-				result.SqlString = Regex.Replace(result.SqlString, @"(distinct\s+\S+)", "cast(count($1) as INT)", RegexOptions.IgnoreCase);
 			}
 
 			return result;
