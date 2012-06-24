@@ -7,7 +7,6 @@ using Criteria.Expressions;
 using Criteria.Joins.Impl;
 using Criteria.Json;
 using Criteria.Registries;
-using Criteria.Registries.Impl;
 
 using Iesi.Collections.Generic;
 

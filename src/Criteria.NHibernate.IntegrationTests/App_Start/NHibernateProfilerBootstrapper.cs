@@ -38,4 +38,3 @@ namespace Criteria.NHibernate.IntegrationTests.App_Start
 		}
 	}
 }
-
