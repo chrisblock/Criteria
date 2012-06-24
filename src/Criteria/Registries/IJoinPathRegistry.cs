@@ -6,6 +6,6 @@ namespace Criteria.Registries
 	public interface IJoinPathRegistry
 	{
 		ICollection<JoinPath> JoinPaths { get; }
-		Dictionary<Type, bool> MultipleJoinLookup { get; set; }
+		Dictionary<Type, bool> MultipleJoinLookup { get; }
 	}
 }

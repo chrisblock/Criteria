@@ -1,6 +1,6 @@
 ﻿using Criteria.Registries.Impl;
 
-namespace Criteria.NHibernateCompatabilityTests.TreeModel
+namespace Criteria.NHibernate.IntegrationTests.TreeModel
 {
 	public class TreeModelCriteriaTypeRegistry : BaseCriteriaTypeRegistry
 	{

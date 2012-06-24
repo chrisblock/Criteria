@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 using Criteria.Expressions;
 using Criteria.Expressions.Impl;
 using Criteria.Json;
-using Criteria.NHibernateCompatabilityTests.App_Start;
-using Criteria.NHibernateCompatabilityTests.SqlLite;
-using Criteria.NHibernateCompatabilityTests.TreeModel;
+using Criteria.NHibernate.IntegrationTests.App_Start;
+using Criteria.NHibernate.IntegrationTests.SqlLite;
+using Criteria.NHibernate.IntegrationTests.TreeModel;
 
 using Newtonsoft.Json;
 
@@ -17,7 +17,7 @@ using NHibernate.Linq;
 
 using NUnit.Framework;
 
-namespace Criteria.NHibernateCompatabilityTests
+namespace Criteria.NHibernate.IntegrationTests
 {
 	[TestFixture]
 	public class CriteriaLeafExpressionStrategyIntegrationTests

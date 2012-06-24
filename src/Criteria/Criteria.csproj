@@ -86,8 +86,12 @@
     <Compile Include="IQueryableProvider.cs" />
     <Compile Include="JoinPathRegistrationException.cs" />
     <Compile Include="Joins\AbstractJoinPart.cs" />
+    <Compile Include="Joins\AllPairsShortestPathResult.cs" />
     <Compile Include="Joins\AnonymousClassManager.cs" />
     <Compile Include="Joins\ConstrainedJoinPart.cs" />
+    <Compile Include="Joins\FloydWarshallResult.cs" />
+    <Compile Include="Joins\IAllPairsShortestPathAlgorithm.cs" />
+    <Compile Include="Joins\Impl\FloydWarshallAlgorithm.cs" />
     <Compile Include="Joins\InjectJoinedTypePropertyVisitor.cs" />
     <Compile Include="Joins\Join.cs" />
     <Compile Include="Joins\JoinConfiguration.cs" />

@@ -1,14 +1,16 @@
-﻿using System;
+﻿// ReSharper disable InconsistentNaming
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Criteria.Expressions;
 using Criteria.Joins;
 using Criteria.Json;
-using Criteria.NHibernate;
-using Criteria.NHibernateCompatabilityTests.App_Start;
-using Criteria.NHibernateCompatabilityTests.SqlLite;
-using Criteria.NHibernateCompatabilityTests.TreeModel;
+using Criteria.NHibernate.IntegrationTests.App_Start;
+using Criteria.NHibernate.IntegrationTests.Mocks;
+using Criteria.NHibernate.IntegrationTests.SqlLite;
+using Criteria.NHibernate.IntegrationTests.TreeModel;
 using Criteria.Registries;
 using Criteria.Registries.Impl;
 
@@ -18,7 +20,7 @@ using NUnit.Framework;
 
 using StructureMap;
 
-namespace Criteria.NHibernateCompatabilityTests
+namespace Criteria.NHibernate.IntegrationTests
 {
 	public class ComplexJoinTests
 	{
@@ -213,10 +215,7 @@ namespace Criteria.NHibernateCompatabilityTests
 			{
 				ExpressionBuilder = new ExpressionBuilder(new TreeModelCriteriaTypeRegistry()),
 				QueryableProvider = new NHibernateQueryableProvider(_session),
-				JoinPathRegistry =	new BaseJoinPathRegistry
-				{
-					MultipleJoinLookup = new Dictionary<Type, bool>()
-				}
+				JoinPathRegistry = new EmptyJoinPathRegistry()
 			};
 		}
 

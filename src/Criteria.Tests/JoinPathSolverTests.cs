@@ -19,8 +19,6 @@ namespace Criteria.Tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			StructureMapBootstrapper.Bootstrap();
-
 			_joinPathSolver = JoinPathSolver.With(new JoinConfiguration
 			{
 				ExpressionBuilder = new ExpressionBuilder(new MockCriteriaTypeRegistry()),

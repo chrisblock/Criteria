@@ -72,6 +72,7 @@
     <Compile Include="LinqToObjectsModel\LinqToObjectsThree.cs" />
     <Compile Include="LinqToObjectsModel\LinqToObjectsOne.cs" />
     <Compile Include="LinqToObjectsModel\LinqToObjectsTwo.cs" />
+    <Compile Include="Mocks\EmptyJoinPathRegistry.cs" />
     <Compile Include="Mocks\JoinPathRegistryWithNoQueryableProvider.cs" />
     <Compile Include="Mocks\LinqToObjectsQueryableProvider.cs" />
     <Compile Include="Mocks\MockCriteriaTypeRegistry.cs" />
@@ -81,7 +82,6 @@
     <Compile Include="SqlConfiguratorTests.cs" />
     <Compile Include="SqlGeneratorResultTests.cs" />
     <Compile Include="SqlUnparameterizationStrategyTests.cs" />
-    <Compile Include="StructureMapBootstrapper.cs" />
     <Compile Include="TestModel\TestEntityClass.cs" />
     <Compile Include="TestModel\TestEntityTwo.cs" />
   </ItemGroup>

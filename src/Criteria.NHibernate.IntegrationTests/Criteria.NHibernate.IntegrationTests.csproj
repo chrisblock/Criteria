@@ -8,8 +8,8 @@
     <ProjectGuid>{B049A11E-AE12-4DA6-B151-3EF15C8C172D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Criteria.NHibernateCompatabilityTests</RootNamespace>
-    <AssemblyName>Criteria.NHibernateCompatabilityTests</AssemblyName>
+    <RootNamespace>Criteria.NHibernate.IntegrationTests</RootNamespace>
+    <AssemblyName>Criteria.NHibernate.IntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -76,7 +76,9 @@
   <ItemGroup>
     <Compile Include="App_Start\NHibernateProfilerBootstrapper.cs" />
     <Compile Include="ComplexJoinTests.cs" />
+    <Compile Include="CriteriaNHibernateIntegrationTestsRegistry.cs" />
     <Compile Include="JoinTests.cs" />
+    <Compile Include="Mocks\EmptyJoinPathRegistry.cs" />
     <Compile Include="Mocks\NHibernateMappingAssemblyContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlGenerationTests.cs" />

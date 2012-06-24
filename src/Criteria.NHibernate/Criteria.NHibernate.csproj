@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sql\Impl\BaseNHibernateSqlGenerator.cs" />
     <Compile Include="Sql\Impl\NHibernateSqlGenerator.cs" />
+    <Compile Include="Sql\JoinPartExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Criteria\Criteria.csproj">

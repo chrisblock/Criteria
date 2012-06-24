@@ -1,8 +1,6 @@
-﻿using Criteria.NHibernate;
+﻿using StructureMap;
 
-using StructureMap;
-
-namespace Criteria.NHibernateCompatabilityTests
+namespace Criteria.NHibernate.IntegrationTests
 {
 	public static class StructureMapBootstrapper
 	{

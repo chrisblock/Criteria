@@ -4,11 +4,11 @@ using System.Linq;
 
 using Criteria.Expressions;
 using Criteria.Joins;
-using Criteria.NHibernate;
-using Criteria.NHibernateCompatabilityTests.App_Start;
-using Criteria.NHibernateCompatabilityTests.Mocks;
-using Criteria.NHibernateCompatabilityTests.SqlLite;
-using Criteria.NHibernateCompatabilityTests.TreeModel;
+using Criteria.NHibernate.IntegrationTests.App_Start;
+using Criteria.NHibernate.IntegrationTests.Mocks;
+using Criteria.NHibernate.IntegrationTests.SqlLite;
+using Criteria.NHibernate.IntegrationTests.TreeModel;
+using Criteria.NHibernate.Sql;
 using Criteria.Registries;
 using Criteria.Registries.Impl;
 using Criteria.Sql;
@@ -19,7 +19,7 @@ using NUnit.Framework;
 
 using StructureMap;
 
-namespace Criteria.NHibernateCompatabilityTests
+namespace Criteria.NHibernate.IntegrationTests
 {
 	[TestFixture]
 	public class SqlGenerationTests
@@ -217,10 +217,7 @@ namespace Criteria.NHibernateCompatabilityTests
 			{
 				ExpressionBuilder = new ExpressionBuilder(new TreeModelCriteriaTypeRegistry()),
 				QueryableProvider = new NHibernateQueryableProvider(_session),
-				JoinPathRegistry = new BaseJoinPathRegistry
-				{
-					MultipleJoinLookup = new Dictionary<Type, bool>()
-				}
+				JoinPathRegistry = new EmptyJoinPathRegistry()
 			};
 		}
 

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Criteria.NHibernateCompatabilityTests.TreeModel
+namespace Criteria.NHibernate.IntegrationTests.TreeModel
 {
 	public class ThreeLevelEntityChild
 	{

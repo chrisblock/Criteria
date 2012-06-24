@@ -15,7 +15,7 @@ using NHibernate.Tool.hbm2ddl;
 using Configuration = NHibernate.Cfg.Configuration;
 using Environment = NHibernate.Cfg.Environment;
 
-namespace Criteria.NHibernateCompatabilityTests.SqlLite
+namespace Criteria.NHibernate.IntegrationTests.SqlLite
 {
 	public class SqlLiteBuilder : IDisposable
 	{

@@ -1,6 +1,6 @@
 ﻿using Criteria.Sql.Impl;
 
-namespace Criteria.NHibernateCompatabilityTests.Mocks
+namespace Criteria.NHibernate.IntegrationTests.Mocks
 {
 	public class NHibernateMappingAssemblyContainer : BaseMappingAssemblyContainer
 	{

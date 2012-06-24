@@ -1,14 +1,15 @@
-﻿using System;
+﻿// ReSharper disable InconsistentNaming
+
+using System;
 
 using Criteria.Expressions;
 using Criteria.Joins;
-using Criteria.Registries;
+using Criteria.Sql;
+using Criteria.Sql.Impl;
 using Criteria.Tests.LinqToObjectsModel;
 using Criteria.Tests.Mocks;
 
 using NUnit.Framework;
-
-using StructureMap;
 
 namespace Criteria.Tests
 {
@@ -20,12 +21,6 @@ namespace Criteria.Tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			StructureMapBootstrapper.Bootstrap();
-
-			ObjectFactory.EjectAllInstancesOf<ICriteriaTypeRegistry>();
-
-			ObjectFactory.Inject<ICriteriaTypeRegistry>(new MockCriteriaTypeRegistry());
-
 			_joinConfiguration = new JoinConfiguration
 			{
 				ExpressionBuilder = new ExpressionBuilder(new MockCriteriaTypeRegistry()),
@@ -36,30 +31,42 @@ namespace Criteria.Tests
 		[Test]
 		public void Generate_WithExpression_ThrowsException()
 		{
+			var configuration = new SqlGeneratorConfiguration();
+
 			Assert.That(
 				() => Join.Using(_joinConfiguration)
 					.StartWith<LinqToObjectsOne>()
-					.Sql<LinqToObjectsOne>(),
+					.Sql<LinqToObjectsOne>(new SqlGenerator(), configuration),
 				Throws.InstanceOf<NotImplementedException>());
 		}
 
 		[Test]
 		public void GenerateUnaliased_WithExpression_ThrowsException()
 		{
+			var configuration = new SqlGeneratorConfiguration
+			{
+				Unalias = true
+			};
+
 			Assert.That(
 				() => Join.Using(_joinConfiguration)
 					.StartWith<LinqToObjectsOne>()
-					.Sql<LinqToObjectsOne>(x => x.Unalias()),
+					.Sql<LinqToObjectsOne>(new SqlGenerator(), configuration),
 				Throws.InstanceOf<NotImplementedException>());
 		}
 
 		[Test]
 		public void GenerateStarSelect_WithExpression_ThrowsException()
 		{
+			var configuration = new SqlGeneratorConfiguration
+			{
+				StarSelect = true
+			};
+
 			Assert.That(
 				() => Join.Using(_joinConfiguration)
 					.StartWith<LinqToObjectsOne>()
-					.Sql<LinqToObjectsOne>(x => x.StarSelect()),
+					.Sql<LinqToObjectsOne>(new SqlGenerator(), configuration),
 				Throws.InstanceOf<NotImplementedException>());
 		}
 	}

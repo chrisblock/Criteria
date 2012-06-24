@@ -30,7 +30,7 @@ namespace Criteria.Sql.Impl
 
 		protected void AddAssemblyContainingType(Type type)
 		{
-			_assemblies.Add(Assembly.GetAssembly(type));
+			_assemblies.Add(type.Assembly);
 		}
 	}
 }

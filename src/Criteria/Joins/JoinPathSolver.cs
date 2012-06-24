@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 using Criteria.Expressions;
+using Criteria.Joins.Impl;
 using Criteria.Json;
 using Criteria.Registries;
 using Criteria.Registries.Impl;
@@ -20,12 +21,9 @@ namespace Criteria.Joins
 
 		private readonly Iesi.Collections.Generic.ISet<JoinPath> _joinPaths;
 		private readonly IList<Type> _joinedTypes;
-		private readonly IDictionary<Type, int> _typeIndexLookup;
-		private readonly int[][] _adjacencyMatrix;
-		private readonly int[][] _distanceMatrix;
-		private readonly int[][] _nextHopMatrix;
+		private readonly AllPairsShortestPathResult _allPairsShortestPathResult;
 
-		private JoinPathSolver(JoinConfiguration joinConfiguration)
+		private JoinPathSolver(IAllPairsShortestPathAlgorithm allPairsShortestPathAlgorithm, JoinConfiguration joinConfiguration)
 		{
 			_joinConfiguration = joinConfiguration;
 			_expressionBuilder = joinConfiguration.ExpressionBuilder;
@@ -37,20 +35,12 @@ namespace Criteria.Joins
 				.Distinct()
 				.ToList();
 
-			_typeIndexLookup = _joinedTypes.ToDictionary(k => k, v => _joinedTypes.IndexOf(v));
-
-			_adjacencyMatrix = BaseJoinPathRegistry.BuildAdjacencyMatrix(_joinPaths);
-
-			var floydWarshallResult = BaseJoinPathRegistry.FloydWarshallAlgorithm(_adjacencyMatrix);
-
-			_distanceMatrix = floydWarshallResult.Item1;
-
-			_nextHopMatrix = floydWarshallResult.Item2;
+			_allPairsShortestPathResult = allPairsShortestPathAlgorithm.Solve(_joinPaths);
 		}
 
 		public static JoinPathSolver With(JoinConfiguration joinConfiguration)
 		{
-			return new JoinPathSolver(joinConfiguration);
+			return new JoinPathSolver(new FloydWarshallAlgorithm(), joinConfiguration);
 		}
 
 		public ConstrainedJoinPart SolveFor<TStart>(JsonCriteriaNode criteria)
@@ -96,7 +86,7 @@ namespace Criteria.Joins
 			var result = new List<JoinPath>();
 
 			var pathsToTypes = typeCounts
-				.ToDictionary(key => key.Key, value => GetJoinPath(startingType, value.Key));
+				.ToDictionary(key => key.Key, value => _allPairsShortestPathResult.GetJoinPath(startingType, value.Key));
 
 			foreach (var type in typeCounts)
 			{
@@ -104,6 +94,7 @@ namespace Criteria.Joins
 				{
 					continue;
 				}
+
 				if (pathsToTypes[type.Key].Any(x => x.IsOneToMany))
 				{
 					for(var c = 0; c < type.Value; c++)
@@ -146,38 +137,6 @@ namespace Criteria.Joins
 			}
 
 			return requiredTypes;
-		}
-
-		private IEnumerable<JoinPath> GetJoinPath(Type start, Type end)
-		{
-			var i = _typeIndexLookup[start];
-			var j = _typeIndexLookup[end];
-
-			if(_distanceMatrix[i][j] == int.MaxValue)
-			{
-				throw new ArgumentException(String.Format("No path found from type \"{0}\" to type \"{1}\".", start, end));
-			}
-
-			var intermediate = _nextHopMatrix[i][j];
-			var intermediatePath = _joinPaths.Where(x => (x.Start == start) && (x.End == end));
-
-			IEnumerable<JoinPath> result;
-
-			if(intermediate == -1)
-			{
-				result = intermediatePath;
-			}
-			else
-			{
-				var intermediateType = _joinedTypes[intermediate];
-
-				var pathToIntermediate = GetJoinPath(start, intermediateType);
-				var pathFromIntermediate = GetJoinPath(intermediateType, end);
-
-				result = pathToIntermediate.Concat(pathFromIntermediate);
-			}
-
-			return result;
 		}
 	}
 }

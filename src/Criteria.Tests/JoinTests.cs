@@ -1,18 +1,17 @@
-﻿using System;
+﻿// ReSharper disable InconsistentNaming
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Criteria.Expressions;
 using Criteria.Joins;
 using Criteria.Json;
-using Criteria.Registries;
 using Criteria.Registries.Impl;
 using Criteria.Tests.LinqToObjectsModel;
 using Criteria.Tests.Mocks;
 
 using NUnit.Framework;
-
-using StructureMap;
 
 namespace Criteria.Tests
 {
@@ -24,20 +23,11 @@ namespace Criteria.Tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			StructureMapBootstrapper.Bootstrap();
-
-			ObjectFactory.EjectAllInstancesOf<ICriteriaTypeRegistry>();
-
-			ObjectFactory.Inject<ICriteriaTypeRegistry>(new MockCriteriaTypeRegistry());
-
 			_joinConfiguration = new JoinConfiguration
 			{
 				ExpressionBuilder = new ExpressionBuilder(new MockCriteriaTypeRegistry()),
 				QueryableProvider = new LinqToObjectsQueryableProvider(),
-				JoinPathRegistry = new BaseJoinPathRegistry
-				{
-					MultipleJoinLookup = new Dictionary<Type, bool>()
-				}
+				JoinPathRegistry = new EmptyJoinPathRegistry()
 			};
 		}
 

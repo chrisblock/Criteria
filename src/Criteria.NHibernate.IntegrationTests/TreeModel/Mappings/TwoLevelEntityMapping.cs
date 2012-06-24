@@ -2,7 +2,7 @@ using System;
 
 using FluentNHibernate.Mapping;
 
-namespace Criteria.NHibernateCompatabilityTests.TreeModel.Mappings
+namespace Criteria.NHibernate.IntegrationTests.TreeModel.Mappings
 {
 	public class TwoLevelEntityMapping : ClassMap<TwoLevelEntity>
 	{

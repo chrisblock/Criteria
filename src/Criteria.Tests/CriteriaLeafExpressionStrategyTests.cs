@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable InconsistentNaming
+
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -22,8 +24,6 @@ namespace Criteria.Tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			StructureMapBootstrapper.Bootstrap();
-
 			_expressionStrategy = new CriteriaLeafExpressionStrategy(new MockCriteriaTypeRegistry());
 		}
 

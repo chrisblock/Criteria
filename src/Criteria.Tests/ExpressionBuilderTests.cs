@@ -20,8 +20,6 @@ namespace Criteria.Tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			StructureMapBootstrapper.Bootstrap();
-
 			_expressionBuilder = new ExpressionBuilder(new MockCriteriaTypeRegistry());
 		}
 

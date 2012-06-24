@@ -3,7 +3,7 @@ using System.Configuration;
 
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 
-namespace Criteria.NHibernateCompatabilityTests.App_Start
+namespace Criteria.NHibernate.IntegrationTests.App_Start
 {
 	public static class NHibernateProfilerBootstrapper
 	{

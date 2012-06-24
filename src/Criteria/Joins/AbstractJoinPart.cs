@@ -2,12 +2,9 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 using Criteria.Expressions;
 using Criteria.Sql;
-
-using StructureMap;
 
 namespace Criteria.Joins
 {
@@ -168,29 +165,11 @@ namespace Criteria.Joins
 				.Cast<TResult>();
 		}
 
-		public SqlGeneratorResult Sql<TResult>()
-		{
-			return Sql<TResult>(new SqlGeneratorConfiguration());
-		}
-
-		public SqlGeneratorResult Sql<TResult>(Action<SqlGeneratorConfigurator> configure)
-		{
-			var configuration = new SqlGeneratorConfiguration();
-
-			var configurator = new SqlGeneratorConfigurator(configuration);
-
-			configure(configurator);
-
-			return Sql<TResult>(configuration);
-		}
-
-		private SqlGeneratorResult Sql<TResult>(SqlGeneratorConfiguration configuration)
+		internal SqlGeneratorResult Sql<TResult>(ISqlGenerator sqlGenerator, SqlGeneratorConfiguration configuration)
 		{
 			var resultType = typeof(TResult);
 
 			var body = BuildBodyExpression(resultType);
-
-			var sqlGenerator = ObjectFactory.GetInstance<ISqlGenerator>();
 
 			if (configuration.DistinctCountPropertyExpression == null)
 			{
