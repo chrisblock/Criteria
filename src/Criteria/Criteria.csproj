@@ -110,8 +110,6 @@
     <Compile Include="Registries\Impl\BaseJoinPathRegistry.cs" />
     <Compile Include="Registries\JoinPath.cs" />
     <Compile Include="Registries\JoinPathConfigurator.cs" />
-    <Compile Include="Registries\JoinPathRegistryConfigurator.cs" />
-    <Compile Include="Registries\JoinPathRegistryToConfigurator.cs" />
     <Compile Include="Registries\JoinPathToConfigurator.cs" />
     <Compile Include="Registries\TypeRegistryResult.cs" />
     <Compile Include="Sql\IMappingAssemblyContainer.cs" />

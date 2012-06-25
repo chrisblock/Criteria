@@ -14,11 +14,11 @@ namespace Criteria.Registries
 		protected LambdaExpression OuterKey { get; private set; }
 		protected LambdaExpression InnerKey { get; private set; }
 
-		public static JoinPath Create<TOuter, TInner, TKey>(Expression<Func<TOuter, TKey>> outerKey, Expression<Func<TInner, TKey>> innerKey, bool isOneToManyJoin = false)
+		public static JoinPath Create<TOuter, TInner, TKey>(Expression<Func<TOuter, TKey>> outerKey, Expression<Func<TInner, TKey>> innerKey, bool isOneToMany = false)
 		{
 			var dependency = new JoinPath<TOuter, TInner, TKey>
 			{
-				IsOneToMany = isOneToManyJoin,
+				IsOneToMany = isOneToMany,
 				Start = typeof(TOuter),
 				End = typeof(TInner),
 				OuterKey = outerKey,
@@ -29,8 +29,6 @@ namespace Criteria.Registries
 		}
 
 		public abstract JoinPart ApplyJoin(JoinPart joinPart);
-
-		public abstract JoinPart StartJoin(JoinConfiguration joinConfiguration);
 
 		public bool Equals(JoinPath other)
 		{
@@ -80,13 +78,6 @@ namespace Criteria.Registries
 		public override JoinPart ApplyJoin(JoinPart joinPart)
 		{
 			return joinPart.Join<TOuter>().To<TInner>().On(TypedOuterKey, TypedInnerKey);
-		}
-
-		public override JoinPart StartJoin(JoinConfiguration joinConfiguration)
-		{
-			return Join.Using(joinConfiguration)
-				.StartWith<TOuter>()
-				.Join<TOuter>().To<TInner>().On(TypedOuterKey, TypedInnerKey);
 		}
 	}
 }

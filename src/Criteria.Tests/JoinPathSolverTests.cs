@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// ReSharper disable InconsistentNaming
+
+using System.Collections.Generic;
 using System.Linq;
 
 using Criteria.Expressions;
@@ -16,8 +18,8 @@ namespace Criteria.Tests
 	{
 		private JoinPathSolver _joinPathSolver;
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
+		[SetUp]
+		public void TestSetUp()
 		{
 			_joinPathSolver = JoinPathSolver.With(new JoinConfiguration
 			{
@@ -76,6 +78,39 @@ namespace Criteria.Tests
 		}
 
 		[Test]
+		public void SolveFor_EmptyJoinPathRegistryAndNoJoins_CorrectlyQueryies()
+		{
+			_joinPathSolver = JoinPathSolver.With(new JoinConfiguration
+			{
+				ExpressionBuilder = new ExpressionBuilder(new MockCriteriaTypeRegistry()),
+				QueryableProvider = new LinqToObjectsQueryableProvider(),
+				JoinPathRegistry = new EmptyJoinPathRegistry()
+			});
+
+			var criteria = new JsonCriteriaNode
+			{
+				Operator = Operator.And,
+				Operands = new List<JsonCriteriaNode>
+				{
+					new JsonCriteriaNode
+					{
+						Key = "LinqToObjectsOneField",
+						Operator = Operator.NotEqual,
+						Value = "OneOne"
+					}
+				}
+			};
+
+			var result = _joinPathSolver
+				.SolveFor<LinqToObjectsOne>(criteria)
+				.Query<LinqToObjectsOne>()
+				.Distinct()
+				.ToList();
+
+			Assert.That(result.Count, Is.EqualTo(5));
+		}
+
+		[Test]
 		public void SolveFor_SingleType_CorrectlyQueries()
 		{
 			var criteria = new JsonCriteriaNode
@@ -129,90 +164,6 @@ namespace Criteria.Tests
 
 		[Test]
 		public void SolveFor_TwoDisjointTypes_CorrectlyQueries()
-		{
-			var criteria = new JsonCriteriaNode
-			{
-				Operator = Operator.And,
-				Operands = new List<JsonCriteriaNode>
-				{
-					new JsonCriteriaNode
-					{
-						Key = "LinqToObjectsTwoField",
-						Operator = Operator.NotEqual,
-						Value = "TwoOne"
-					},
-					new JsonCriteriaNode
-					{
-						Key = "LinqToObjectsThreeField",
-						Operator = Operator.NotEqual,
-						Value = "ThreeTwo"
-					}
-				}
-			};
-
-			var result = _joinPathSolver
-				.SolveFor<LinqToObjectsTwo>(criteria)
-				.Query<LinqToObjectsTwo>()
-				.Distinct()
-				.ToList();
-
-			Assert.That(result.Count, Is.EqualTo(1));
-		}
-
-		[Test]
-		public void SolveExplicitlyFor_SingleType_CorrectlyQueries()
-		{
-			var criteria = new JsonCriteriaNode
-			{
-				Operator = Operator.And,
-				Operands = new List<JsonCriteriaNode>
-				{
-					new JsonCriteriaNode
-					{
-						Key = "LinqToObjectsOneField",
-						Operator = Operator.NotEqual,
-						Value = "OneOne"
-					}
-				}
-			};
-
-			var result = _joinPathSolver
-				.SolveFor<LinqToObjectsOne>(criteria)
-				.Query<LinqToObjectsOne>()
-				.Distinct()
-				.ToList();
-
-			Assert.That(result.Count, Is.EqualTo(5));
-		}
-
-		[Test]
-		public void SolveExplicitlyFor_TwoTypes_CorrectlyQueries()
-		{
-			var criteria = new JsonCriteriaNode
-			{
-				Operator = Operator.And,
-				Operands = new List<JsonCriteriaNode>
-				{
-					new JsonCriteriaNode
-					{
-						Key = "LinqToObjectsOneField",
-						Operator = Operator.NotEqual,
-						Value = "OneOne"
-					}
-				}
-			};
-
-			var result = _joinPathSolver
-				.SolveFor<LinqToObjectsTwo>(criteria)
-				.Query<LinqToObjectsTwo>()
-				.Distinct()
-				.ToList();
-
-			Assert.That(result.Count, Is.EqualTo(4));
-		}
-
-		[Test]
-		public void SolveExplicitlyFor_TwoDisjointTypes_CorrectlyQueries()
 		{
 			var criteria = new JsonCriteriaNode
 			{

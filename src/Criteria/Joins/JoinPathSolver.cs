@@ -111,7 +111,7 @@ namespace Criteria.Joins
 			{
 				foreach(var path in joinPathEnumerable)
 				{
-					if (result.Contains(path) && !path.IsOneToMany)
+					if (result.Contains(path) && (path.IsOneToMany == false))
 					{
 						continue;
 					}

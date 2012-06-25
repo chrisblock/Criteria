@@ -52,6 +52,7 @@ namespace Criteria.Joins
 				{
 					throw new ArgumentException(String.Format("Could not find field of type {0} as part of type {1}", node.Type, _parameterToInject.Type));
 				}
+
 				result = Expression.Field(_parameterToInject, parameterField);
 				if (_multipleJoinLookup.ContainsKey(node.Type))
 				{

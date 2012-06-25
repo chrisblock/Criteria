@@ -9,7 +9,7 @@ namespace Criteria
 		{
 			var targetType = conversionType;
 
-			if(targetType.IsGenericType && targetType.GetGenericTypeDefinition() == typeof(Nullable<>))
+			if(targetType.IsGenericType && (targetType.GetGenericTypeDefinition() == typeof (Nullable<>)))
 			{
 				targetType = conversionType.GetGenericArguments().Single();
 			}
