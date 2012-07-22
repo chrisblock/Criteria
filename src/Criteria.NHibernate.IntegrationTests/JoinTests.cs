@@ -12,7 +12,6 @@ using Criteria.NHibernate.IntegrationTests.Mocks;
 using Criteria.NHibernate.IntegrationTests.SqlLite;
 using Criteria.NHibernate.IntegrationTests.TreeModel;
 using Criteria.Registries;
-using Criteria.Registries.Impl;
 
 using NHibernate;
 

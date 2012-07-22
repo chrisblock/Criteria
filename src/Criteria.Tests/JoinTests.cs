@@ -1,13 +1,11 @@
 ﻿// ReSharper disable InconsistentNaming
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Criteria.Expressions;
 using Criteria.Joins;
 using Criteria.Json;
-using Criteria.Registries.Impl;
 using Criteria.Tests.LinqToObjectsModel;
 using Criteria.Tests.Mocks;
 

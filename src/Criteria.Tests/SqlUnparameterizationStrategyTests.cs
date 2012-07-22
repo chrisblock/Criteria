@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable InconsistentNaming
+
+using System;
 using System.Data.SqlClient;
 
 using Criteria.Sql.Impl;

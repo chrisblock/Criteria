@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Criteria.Registries;
-using Criteria.Registries.Impl;
 
 namespace Criteria.Joins.Impl
 {

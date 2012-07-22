@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Threading;
 
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 
@@ -7,6 +8,10 @@ namespace Criteria.NHibernate.IntegrationTests.App_Start
 {
 	public static class NHibernateProfilerBootstrapper
 	{
+		private static readonly Lazy<bool> LazyIsProfiling = new Lazy<bool>(IsProfilingNHibernate, LazyThreadSafetyMode.ExecutionAndPublication);
+
+		private static bool IsProfiling { get { return LazyIsProfiling.Value; } }
+
 		private static bool IsProfilingNHibernate()
 		{
 			var result = false;
@@ -23,7 +28,7 @@ namespace Criteria.NHibernate.IntegrationTests.App_Start
 
 		public static void PreStart()
 		{
-			if (IsProfilingNHibernate())
+			if (IsProfiling)
 			{
 				NHibernateProfiler.Initialize();
 			}
@@ -31,7 +36,7 @@ namespace Criteria.NHibernate.IntegrationTests.App_Start
 
 		public static void PostStop()
 		{
-			if (IsProfilingNHibernate())
+			if (IsProfiling)
 			{
 				NHibernateProfiler.Stop();
 			}

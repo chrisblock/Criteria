@@ -10,7 +10,6 @@ using Criteria.NHibernate.IntegrationTests.SqlLite;
 using Criteria.NHibernate.IntegrationTests.TreeModel;
 using Criteria.NHibernate.Sql;
 using Criteria.Registries;
-using Criteria.Registries.Impl;
 using Criteria.Sql;
 
 using NHibernate;
