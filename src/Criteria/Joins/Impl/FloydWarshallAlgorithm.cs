@@ -10,13 +10,15 @@ namespace Criteria.Joins.Impl
 	{
 		public AllPairsShortestPathResult Solve(IEnumerable<JoinPath> joinPaths)
 		{
-			var joinedTypes = joinPaths.Select(x => x.End)
+			var paths = joinPaths.ToList();
+
+			var joinedTypes = paths.Select(x => x.End)
 				.Distinct()
 				.ToList();
 
 			var typeIndexLookup = joinedTypes.ToDictionary(k => k, joinedTypes.IndexOf);
 
-			var distanceMatrix = BuildAdjacencyMatrix(typeIndexLookup, joinPaths);
+			var distanceMatrix = BuildAdjacencyMatrix(typeIndexLookup, paths);
 			var n = distanceMatrix.Length;
 			
 			var nextHopMatrix = BuildSquareArray<int>(n, x => y => -1);
@@ -40,7 +42,7 @@ namespace Criteria.Joins.Impl
 				}
 			}
 
-			return new FloydWarshallResult(typeIndexLookup, joinedTypes, joinPaths, distanceMatrix, nextHopMatrix);
+			return new FloydWarshallResult(typeIndexLookup, joinedTypes, paths, distanceMatrix, nextHopMatrix);
 		}
 
 		private static int [][] BuildAdjacencyMatrix(IDictionary<Type, int> typeIndexLookup, IEnumerable<JoinPath> joinPaths)

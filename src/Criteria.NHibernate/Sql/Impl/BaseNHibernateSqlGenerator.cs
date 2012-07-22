@@ -154,7 +154,7 @@ namespace Criteria.NHibernate.Sql.Impl
 
 		private static string GenerateStarSelectSqlString(string sqlString, string tableAlias)
 		{
-			var indexOfFrom = sqlString.IndexOf(" from ", System.StringComparison.Ordinal);
+			var indexOfFrom = sqlString.IndexOf(" from ", StringComparison.Ordinal);
 
 			var starSelectSqlString = String.Format("select {0}.*{1}", tableAlias, sqlString.Substring(indexOfFrom));
 

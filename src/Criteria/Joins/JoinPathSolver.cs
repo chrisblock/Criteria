@@ -46,7 +46,7 @@ namespace Criteria.Joins
 		{
 			var expression = _expressionBuilder.Build(criteria);
 
-			var requiredTypes = GetRequiredTypes<TStart>(expression).ToList();
+			var requiredTypes = GetRequiredTypes(typeof (TStart), expression).ToList();
 
 			var missingTypes = requiredTypes
 				.Where(x => (_joinedTypes.Contains(x.Key) == false) && (x.Key != typeof(TStart)))
@@ -96,7 +96,7 @@ namespace Criteria.Joins
 
 				if (pathsToTypes[type.Key].Any(x => x.IsOneToMany))
 				{
-					for(var c = 0; c < type.Value; c++)
+					for(var i = 0; i < type.Value; i++)
 					{
 						joinPaths.Add(pathsToTypes[type.Key]);
 					}
@@ -123,10 +123,8 @@ namespace Criteria.Joins
 			return result;
 		}
 
-		private IEnumerable<KeyValuePair<Type, int>> GetRequiredTypes<TResult>(Expression expression)
+		private IEnumerable<KeyValuePair<Type, int>> GetRequiredTypes(Type resultType, Expression expression)
 		{
-			var resultType = typeof (TResult);
-
 			var requiredTypes = _findNecessaryTypesVisitor
 				.FindParameterTypes(expression);
 

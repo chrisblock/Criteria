@@ -32,6 +32,11 @@ namespace Criteria.Expressions.Impl
 
 			var valueCollection = leaf.Value as IEnumerable;
 
+			if (valueCollection == null)
+			{
+				throw new ArgumentException("Cannot use operator 'Between' on non-IEnumerable value.");
+			}
+
 			try
 			{
 				var enumerator = valueCollection.GetEnumerator();

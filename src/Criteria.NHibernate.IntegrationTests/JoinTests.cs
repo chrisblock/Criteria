@@ -281,13 +281,12 @@ namespace Criteria.NHibernate.IntegrationTests
 		public void Join_JoinToTheSameType_ThrowsException()
 		{
 			Assert.That(() =>
-				{
 					Join.Using(_joinConfiguration)
 						.StartWith<RootEntity>()
 						.Join<RootEntity>().To<RootEntity>().On(p => p.RootEntityId, c => c.RootEntityId)
 						.Query<RootEntity>()
-						.ToList();
-				}, Throws.ArgumentException);
+						.ToList()
+				, Throws.ArgumentException);
 		}
 
 		[Test]

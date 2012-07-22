@@ -1,4 +1,6 @@
-﻿using Criteria.Sql;
+﻿// ReSharper disable InconsistentNaming
+
+using Criteria.Sql;
 using Criteria.Tests.TestModel;
 
 using NUnit.Framework;

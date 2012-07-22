@@ -55,7 +55,7 @@ namespace Criteria.Expressions
 			}
 
 			var left = Build(operands.First());
-			var right = operands.Skip(1);
+			var right = operands.Skip(1).ToList();
 
 			var result = (right.Any())
 				? Expression.MakeBinary(type, left, BuildBinaryExpressionTree(type, right))
