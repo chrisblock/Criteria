@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter.cs" />
-    <Compile Include="CriteriaRegistrationException.cs" />
     <Compile Include="Expressions\Impl\CriteriaLeafExpressionEqualsColumnStrategy.cs" />
     <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsNotSpecifiedStrategy.cs" />
     <Compile Include="Expressions\Impl\CriteriaLeafExpressionIsSpecifiedStrategy.cs" />
@@ -83,7 +82,6 @@
     <Compile Include="Expressions\Impl\CriteriaLeafExpressionNotEqualsStrategy.cs" />
     <Compile Include="Expressions\Impl\CriteriaLeafExpressionStrategy.cs" />
     <Compile Include="IQueryableProvider.cs" />
-    <Compile Include="JoinPathRegistrationException.cs" />
     <Compile Include="Joins\AbstractJoinPart.cs" />
     <Compile Include="Joins\AllPairsShortestPathResult.cs" />
     <Compile Include="Joins\AnonymousClassManager.cs" />
@@ -124,7 +122,6 @@
     <Compile Include="Sql\SqlGeneratorConfiguration.cs" />
     <Compile Include="Sql\SqlGeneratorConfigurator.cs" />
     <Compile Include="Sql\SqlGeneratorResult.cs" />
-    <Compile Include="TypeRegistrationException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

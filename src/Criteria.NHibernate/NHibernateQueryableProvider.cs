@@ -19,12 +19,5 @@ namespace Criteria.NHibernate
 		{
 			return _session.Query<T>();
 		}
-
-		public IQueryable GetQueryable(Type type)
-		{
-			var queryable = GetType().GetMethod("GetQueryableFor").MakeGenericMethod(new[] { type }).Invoke(this, new object[0]) as IQueryable;
-
-			return queryable;
-		}
 	}
 }

@@ -86,12 +86,11 @@ namespace Criteria.Joins
 			LambdaExpression result;
 
 			var inputType = JoinContext.LastJoinResultItemType;
-			var outputType = resultType;
 
 			var knownTypes = inputType.GetFields().Select(x => x.FieldType);
 			var knownTypeFieldAccessorExpressions = inputType.GetFields().ToDictionary(k => k.FieldType, v => v);
 
-			var constructorsWithOnlyParametersOfKnownType = outputType
+			var constructorsWithOnlyParametersOfKnownType = resultType
 				.GetConstructors(BindingFlags.Instance | BindingFlags.Public)
 				.Where(x => x.GetParameters().All(p => knownTypes.Contains(p.ParameterType)))
 				.OrderByDescending(x => x.GetParameters().Count());
@@ -111,7 +110,7 @@ namespace Criteria.Joins
 			}
 			else
 			{
-				throw new ArgumentException(String.Format("Type {0} does not contain a constructor that accepts only types in the result set.", outputType));
+				throw new ArgumentException(String.Format("Type {0} does not contain a constructor that accepts only types in the result set.", resultType));
 			}
 
 			return result;

@@ -47,14 +47,9 @@ namespace Criteria.NHibernate.Sql.Impl
 			SqlGeneratorResult result;
 
 			// TODO: Try to reuse an existing session, if one exists
-			using (var session = SessionFactory.OpenSession())
+			using (var session = SessionFactory.OpenSession()) // SessionFactory.GetCurrentSession()
 			{
-				var sessionImplementor = session as ISessionImplementor;
-
-				if (sessionImplementor == null)
-				{
-					throw new InvalidCastException("Sql generation only works with ISessionImplementor sessions.");
-				}
+				var sessionImplementor = session.GetSessionImplementation();
 
 				var queryExpressionAndParameters = GetQueryExpressionWithParameters(sessionImplementor, expression);
 
@@ -187,6 +182,7 @@ namespace Criteria.NHibernate.Sql.Impl
 			}
 
 			var result = new Dictionary<string, string>();
+
 			for(var i = 0; i < columnAliases.Count; i++)
 			{
 				var badAlias = columnAliases[i];
