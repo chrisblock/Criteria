@@ -9,7 +9,6 @@ namespace Criteria.NHibernate.IntegrationTests.App_Start
 	public static class NHibernateProfilerBootstrapper
 	{
 		private static readonly Lazy<bool> LazyIsProfiling = new Lazy<bool>(IsProfilingNHibernate, LazyThreadSafetyMode.ExecutionAndPublication);
-
 		private static bool IsProfiling { get { return LazyIsProfiling.Value; } }
 
 		private static bool IsProfilingNHibernate()

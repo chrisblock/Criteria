@@ -1,0 +1,1 @@
+2013-09-07 12:29:07,854 [1] ERROR HibernatingRhinos.Profiler.Client.Host.SilverlightLauncher [(null)] - Silverlight isn't installed, we can't run without Silverlight!

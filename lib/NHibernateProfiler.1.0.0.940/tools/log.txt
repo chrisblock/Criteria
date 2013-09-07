@@ -1,1 +1,0 @@
-2012-07-22 12:18:05,024 [1] WARN  Rhino.Licensing.AbstractLicenseValidator [(null)] - Could not find license file: C:\Users\Chris Block\AppData\Local\NHibernate Profiler\license.xml
